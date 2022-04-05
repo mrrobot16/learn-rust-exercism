@@ -4,7 +4,7 @@ pub fn square_of_sum(n: u32) -> u32 {
         vector.push(number)
     }
     let sum: u32 = vector.iter().sum();
-    let square = u32::pow(sum,2);
+    let square = u32::pow(sum, 2);
     square
 }
 
@@ -22,4 +22,15 @@ pub fn difference(n: u32) -> u32 {
     let sum_of_squares = sum_of_squares(n);
     let difference = square_of_sum - sum_of_squares;
     difference
+}
+
+// Cleaner community solution
+pub fn square_of_sum(n: u32) -> u32 {
+    (1..=n).sum::<u32>().pow(2)
+}
+pub fn sum_of_squares(n: u32) -> u32 {
+    (1..=n).map(|x| x.pow(2)).sum()
+}
+pub fn difference(n: u32) -> u32 {
+    square_of_sum(n) - sum_of_squares(n)
 }

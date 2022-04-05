@@ -1,12 +1,22 @@
-pub fn is_armstrong_number(number: u32) -> bool {
-    print_space();
-    
-    let armstrong_number = number == calculate_armstrong_number(number);
-    
-    println!("armstrong_number: {}", armstrong_number);
-    print_space();
-    
-    armstrong_number
+// pub fn is_armstrong_number(number: u32) -> bool {
+//     print_space();
+// 
+//     let armstrong_number = number == calculate_armstrong_number(number);
+// 
+//     println!("armstrong_number: {}", armstrong_number);
+//     print_space();
+// 
+//     armstrong_number
+// }
+
+// Cleaner community solution
+pub fn is_armstrong_number(num: u32) -> bool {
+    let digits = num.to_string()
+                    .chars()
+                    .map(|d| d.to_digit(10).unwrap())
+                    .collect::<Vec<_>>();
+    let num_of_digits = digits.len() as u32;
+    num == digits.iter().fold(0, |acc, d| acc + d.pow(num_of_digits))
 }
 
 pub fn calculate_armstrong_number(num: u32) -> u32 {

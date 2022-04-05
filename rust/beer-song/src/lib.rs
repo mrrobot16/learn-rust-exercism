@@ -35,3 +35,20 @@ pub fn sing(start: u32, end: u32) -> String {
     let song = range.map(closure).collect::<Vec<_>>().join("\n");
     song
 }
+// Cleaner community solutions
+
+pub fn verse(n: u32) -> String {
+    let parts = |n| match n {
+        1 => ("1 bottle of beer".to_string(), "Take it down and pass it around"),
+        0 => ("no more bottles of beer".to_string(), "Go to the store and buy some more"),
+        _ => (format!("{} bottles of beer", n), "Take one down and pass it around"),
+    };
+    let cap = |mut s: String| { s.split_at_mut(1).0.make_ascii_uppercase(); s };
+    let wall = "on the wall";
+    let (bottles, pass) = parts(n);
+    let b_wall = format!("{} {}", parts(if n > 0 { n-1 } else { 99 }).0, wall);
+    cap(format!("{} {}, {}.\n{}, {}.\n", bottles, wall, bottles, pass, b_wall))
+}
+pub fn sing(start: u32, end: u32) -> String {
+    (end..=start).rev().map(|n| verse(n)).collect::<Vec<_>>().join("\n")
+}
