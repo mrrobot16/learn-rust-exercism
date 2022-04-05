@@ -6,13 +6,13 @@ fn test_square_of_sum_1() {
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_square_of_sum_5() {
     assert_eq!(225, squares::square_of_sum(5));
 }
 
 #[test]
-#[ignore]
+// #[ignore]
 fn test_square_of_sum_100() {
     assert_eq!(25_502_500, squares::square_of_sum(100));
 }
